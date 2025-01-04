@@ -19,22 +19,22 @@
         .skins-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 50px;
             margin-top: 20px;
         }
         .skin {
-            border: 2px solid white;
+            border: 4px solid white;
             border-radius: 10px;
             padding: 10px;
             cursor: pointer;
             transition: transform 0.2s;
         }
         .skin img {
-            max-width: 200px;
+            max-width: 300px;
             border-radius: 10px;
         }
         .skin:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         footer {
             margin-top: 20px;
@@ -45,41 +45,45 @@
 </head>
 <body>
     <h1>Fortnite Skin Showdown</h1>
-    <p>Click on the hotter skin!</p>
+    <p>Click on the hotter skin to vote!</p>
     <div class="skins-container">
         <div class="skin" onclick="vote(0)">
-            <img src="https://via.placeholder.com/200?text=Skin+1" alt="Skin 1">
+            <img src="" alt="Skin 1">
         </div>
         <div class="skin" onclick="vote(1)">
-            <img src="https://via.placeholder.com/200?text=Skin+2" alt="Skin 2">
+            <img src="" alt="Skin 2">
         </div>
     </div>
     <footer>&copy; 2025 Fortnite Skin Showdown</footer>
 
     <script>
+        // Array of Fortnite skin URLs (replace with real URLs if available)
         const skins = [
-            { name: "Skin 1", img: "https://via.placeholder.com/200?text=Skin+1" },
-            { name: "Skin 2", img: "https://via.placeholder.com/200?text=Skin+2" },
-            { name: "Skin 3", img: "https://via.placeholder.com/200?text=Skin+3" },
-            { name: "Skin 4", img: "https://via.placeholder.com/200?text=Skin+4" },
+            { name: "Skin 1", img: https://in.pinterest.com/pin/999095498553995230/ },
+            { name: "Skin 2", img: https://www.google.com/imgres?q=give%20me%20urls%20of%20hot%20fortnite%20skins&imgurl=https%3A%2F%2Fi.ytimg.com%2Fvi%2FOM4mwn6KJjU%2Fmaxresdefault.jpg&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DOM4mwn6KJjU&docid=C2OgIsjbuKLaOM&tbnid=u_w5JJdnlg-CsM&vet=12ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oFCIIBEAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oFCIIBEAA },
+            { name: "Skin 3", img: https://www.google.com/imgres?q=give%20me%20urls%20of%20hot%20fortnite%20skins&imgurl=https%3A%2F%2Fdotesports.com%2Fwp-content%2Fuploads%2F2022%2F08%2FFortnite-Harlowe-Skin.jpg&imgrefurl=https%3A%2F%2Fdotesports.com%2Ffortnite%2Fnews%2Fbest-thicc-fortnite-skins-of-all-time&docid=LkK93i0IDJ6zCM&tbnid=eiAF82t4jrCbGM&vet=12ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oFCIABEAA..i&w=1200&h=675&hcb=2&ved=2ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oFCIABEAA },
+            { name: "Skin 4", img: https://www.google.com/imgres?q=give%20me%20urls%20of%20hot%20fortnite%20skins&imgurl=https%3A%2F%2Fcdn.mos.cms.futurecdn.net%2FxdotnLgQKAXkxPGj9daB5a-1200-80.jpg&imgrefurl=https%3A%2F%2Fwww.pcgamer.com%2Fbananas-are-for-losers-the-new-hot-fortnite-skin-is-a-big-stick-of-meat%2F&docid=8HVnAPFWT5cotM&tbnid=oRLs9cqIEBCWfM&vet=12ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oECDIQAA..i&w=1200&h=675&hcb=2&ved=2ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oECDIQAA },
+            { name: "Skin 5", img: https://www.google.com/imgres?q=give%20me%20urls%20of%20hot%20fortnite%20skins&imgurl=https%3A%2F%2Fwww.dexerto.com%2Fcdn-image%2Fwp-content%2Fuploads%2F2024%2F08%2F16%2Ffn-katalina-skin.jpg%3Fwidth%3D1200%26quality%3D60%26format%3Dauto&imgrefurl=https%3A%2F%2Fwww.dexerto.com%2Ffortnite%2Fhow-to-get-the-katalina-skin-for-free-in-fortnite-2865055%2F&docid=I7k23fRz0SwxOM&tbnid=R-O74_oO91HwXM&vet=12ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oECEkQAA..i&w=1200&h=675&hcb=2&ved=2ahUKEwiemZul2NyKAxUUaPUHHVwNHUIQM3oECEkQAA }
         ];
 
-        function vote(winnerIndex) {
-            // Remove the loser
-            skins.splice(1 - winnerIndex, 1);
+        let currentSkins = [0, 1]; // Indices of the current two skins being displayed
 
-            // Check if one skin is left
-            if (skins.length === 1) {
-                document.body.innerHTML = `<h1>The Winner Is: ${skins[0].name}!</h1>
-                                           <img src="${skins[0].img}" alt="${skins[0].name}" style="max-width:300px;">`;
-                return;
-            }
-
-            // Update the UI with new skins
+        function displaySkins() {
             const skinElements = document.querySelectorAll('.skin img');
-            skinElements[0].src = skins[0].img;
-            skinElements[1].src = skins[1].img;
+            currentSkins.forEach((skinIndex, i) => {
+                skinElements[i].src = skins[skinIndex].img;
+                skinElements[i].alt = skins[skinIndex].name;
+            });
         }
+
+        function vote(winnerIndex) {
+            const loserIndex = 1 - winnerIndex;
+            currentSkins[loserIndex] = (currentSkins[loserIndex] + 2) % skins.length; // Move the loser to the next skin
+            displaySkins(); // Refresh the displayed skins
+        }
+
+        // Initialize the first skins
+        displaySkins();
     </script>
 </body>
 </html>
