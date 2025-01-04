@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Skin Showdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #2a2a2a;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .skins-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .skin {
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .skin img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+        .skin:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fortnite Skin Showdown</h1>
+    <p>Click on the hotter skin!</p>
+    <div class="skins-container">
+        <div class="skin" onclick="vote(0)">
+            <img src="https://via.placeholder.com/200?text=Skin+1" alt="Skin 1">
+        </div>
+        <div class="skin" onclick="vote(1)">
+            <img src="https://via.placeholder.com/200?text=Skin+2" alt="Skin 2">
+        </div>
+    </div>
+    <footer>&copy; 2025 Fortnite Skin Showdown</footer>
+
+    <script>
+        const skins = [
+            { name: "Skin 1", img: "https://via.placeholder.com/200?text=Skin+1" },
+            { name: "Skin 2", img: "https://via.placeholder.com/200?text=Skin+2" },
+            { name: "Skin 3", img: "https://via.placeholder.com/200?text=Skin+3" },
+            { name: "Skin 4", img: "https://via.placeholder.com/200?text=Skin+4" },
+        ];
+
+        function vote(winnerIndex) {
+            // Remove the loser
+            skins.splice(1 - winnerIndex, 1);
+
+            // Check if one skin is left
+            if (skins.length === 1) {
+                document.body.innerHTML = `<h1>The Winner Is: ${skins[0].name}!</h1>
+                                           <img src="${skins[0].img}" alt="${skins[0].name}" style="max-width:300px;">`;
+                return;
+            }
+
+            // Update the UI with new skins
+            const skinElements = document.querySelectorAll('.skin img');
+            skinElements[0].src = skins[0].img;
+            skinElements[1].src = skins[1].img;
+        }
+    </script>
+</body>
+</html>
